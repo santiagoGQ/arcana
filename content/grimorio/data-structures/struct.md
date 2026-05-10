@@ -18,23 +18,13 @@ Un Struct / Record es un tipo de dato compuesto que agrupa un número fijo de ca
 - Propiedades clave: Sus elementos se acceden mediante un identificador (atributos). Fomenta una alta cohesión de datos y, en su definición más pura, carece de metodos, actuando solo como contenedor de información.
 ### Representación
 
-Esta es la representacion más básica de una estructura:
-```
-struct Punto3d {
-    float x;
-    float y;
-    float z;
-}
-```
+Esta es una representación sencilla de estructura:
+
+![](/attachments/grimorio/data-structures/estructura-cuadro.svg)
 
 En Python, los objetos por defecto usan un diccionario interno dinámico para guardar atributos. Para lograr la representación real de un Struct en Python, se utiliza el campo `slots`. Internamente, la estructura se convierte en un arreglo estricto de referencias (punteros) a los valores en memoria, eliminando el diccionario.
  
-```
-Instancia 'Punto3D' -> [ Header del Objeto ]
-                       [ Ref al valor 'x'  ] -> Objeto float
-                       [ Ref al valor 'y'  ] -> Objeto float
-                       [ Ref al valor 'z'  ] -> Objeto float
-```
+![](/attachments/grimorio/data-structures/estructura-python.svg)
 
 ---
  
