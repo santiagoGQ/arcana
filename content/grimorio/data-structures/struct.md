@@ -34,7 +34,8 @@ En Python, los objetos por defecto usan un diccionario interno dinámico para gu
  
 - **Acceso / Lectura (Read Field):** $O(1)$. Se accede directamente al atributo (ej. `punto.x`) mediante una búsqueda optimizada en memoria.
 - **Modificación (Write Field):** $O(1)$. Si la estructura es mutable, se reasigna la referencia del campo a un nuevo valor.
-- **Instanciación (Create):** $O(K)$, donde $K$ es la cantidad de campos, ya que se debe reservar el espacio y asignar las referencias iniciales de cada atributo.
+- **Instanciación (Create):** $O(K)$, donde $K$ es la cantidad de campos, ya que se debe reservar el espacio y asignar las referencias iniciales de cada atributo. Aunque en la práctica este numero es muy pequeño y fijo, así que podriamos considerar que es $O(1)$.
+
 ### Detalles operativos
  
 - No hay operaciones de inserción o eliminación de campos en tiempo de ejecución: la estructura tiene un tamaño fijo definido en su declaración.
@@ -73,7 +74,7 @@ punto = Coordenada(10.5, -5.2)
 punto.x = 8.0           # Modificación O(1) permitida
  
 color_fondo = ColorRGB(255, 255, 255)
-# color_fondo.rojo = 0  # Lanzaría AttributeError (inmutable)
+# color_fondo.rojo = 0  # Lanzaría AttributeError por ser una namedTuple (sólo lectura)
 ```
  
 ---
@@ -89,6 +90,7 @@ color_fondo = ColorRGB(255, 255, 255)
  
 - Cuando la entidad tiene reglas de validación complejas al momento de modificarse (en cuyo caso es mejor una **clase OOP** completa con métodos *getter/setter*).
 - Cuando los campos de los datos son desconocidos y pueden cambiar dinámicamente en tiempo de ejecución (ej. procesar el cuerpo de un JSON arbitrario).
+
 ### Comparaciones
  
 - vs Arreglo: La estructura viene a "ordenar" (no literalmente) los datos que podemos llegar a tener dentro de un Arreglo, en vez de accederlos por un indice, los tenemos definidos en la estructura con referencias y nombres. Además, el Arreglo necesita que los valores sean homogéneos, y la Estructura permite tener agrupados varios tipos de valores.
@@ -136,3 +138,4 @@ La serialización de estos objetos para guardarlos en disco o enviarlos por red 
 - Documentación oficial de Python - *dataclasses*: <https://docs.python.org/3/library/dataclasses.html>
 - Documentación oficial de Python - *collections.namedtuple*: <https://docs.python.org/3/library/collections.html#collections.namedtuple>
 - Record (en inglés) - <https://en.wikipedia.org/wiki/Record_(computer_science)>
+- Kernighan y Ritchie, El lenguaje de programación C, Capítulo 6: “Estructuras”.
